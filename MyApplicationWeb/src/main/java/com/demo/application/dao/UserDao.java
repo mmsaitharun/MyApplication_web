@@ -39,14 +39,16 @@ public class UserDao {
 		dto.setUserLoginName(user.getUserLoginName());
 		dto.setUserFullName(user.getUserFullName());
 		dto.setPhoneNumber(user.getPhoneNumber());
+		dto.setUserId(user.getUserId());
 		return dto;
 	}
 	
 	public User importDto(UserDto dto) {
 		User user = new User();
+		user.setUserId(dto.getUserId());
 		user.setUserLoginName(dto.getUserLoginName());
 		user.setUserFullName(dto.getUserFullName());
-		user.setPhoneNumber(dto.getPhoneNumber());
+//		user.setPhoneNumber(dto.getPhoneNumber());
 		return user;
 	}
 	
@@ -66,8 +68,8 @@ public class UserDao {
 		return list;
 	}
 	
-	public Long createUser(UserDto userDto) {
-		return (Long) this.getSession().save(this.importDto(userDto));
+	public String createUser(UserDto userDto) {
+		return (String) this.getSession().save(this.importDto(userDto));
 	}
 	
 	@SuppressWarnings({ "unchecked", "deprecation" })
@@ -77,7 +79,7 @@ public class UserDao {
 		if(!ServicesUtil.isEmpty(loginName)) {
 			criteria.add(Restrictions.eq("userLoginName", loginName));
 		} else if(!ServicesUtil.isEmpty(fullName)) {
-			criteria.add(Restrictions.eq("fullName", fullName));
+			criteria.add(Restrictions.eq("userFullName", fullName));
 		} else if(!ServicesUtil.isEmpty(phoneNumber)) {
 			criteria.add(Restrictions.eq("phoneNumber", phoneNumber));
 		}

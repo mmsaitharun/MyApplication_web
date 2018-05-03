@@ -33,7 +33,7 @@ public class HibernateConfiguration {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		sessionFactory.setHibernateProperties(hibernateProperties());
-		sessionFactory.setPackagesToScan(new String[] { "oneapp.demo" });
+		sessionFactory.setPackagesToScan(new String[] { "com.demo" });
 		return sessionFactory;
 	}
 
@@ -43,7 +43,7 @@ public class HibernateConfiguration {
 		properties.put("hibernate.dialect", environment.getRequiredProperty("jdbc.mysql.hibernate.dialect"));
 		properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
 		properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
-		properties.put("hbm2ddl.auto", "update");
+		properties.put("hibernate.hbm2ddl.auto", "update");
 		// environment.getRequiredProperty("hibernate.hbm2ddl.auto")
 		return properties;
 	}

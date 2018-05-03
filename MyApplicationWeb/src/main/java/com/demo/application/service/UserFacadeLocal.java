@@ -6,7 +6,7 @@ import com.demo.application.dto.UserDto;
 
 public interface UserFacadeLocal {
 
-	Long createUser(UserDto dto);
+	String createUser(UserDto dto);
 
 	List<UserDto> getUser(String loginName, String fullName, String phoneNumber);
 

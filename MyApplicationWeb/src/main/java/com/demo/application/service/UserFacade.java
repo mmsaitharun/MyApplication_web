@@ -15,7 +15,7 @@ public class UserFacade implements UserFacadeLocal {
 	private UserDao userDao;
 	
 	@Override
-	public Long createUser(UserDto dto) {
+	public String createUser(UserDto dto) {
 		return userDao.createUser(dto);
 	}
 	

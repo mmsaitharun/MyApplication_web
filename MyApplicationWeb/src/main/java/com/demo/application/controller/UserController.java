@@ -13,19 +13,21 @@ import com.demo.application.dto.UserDto;
 import com.demo.application.service.UserFacadeLocal;
 
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 public class UserController {
 
 	@Autowired
 	private UserFacadeLocal userFacadeLocal;
-	
-	@RequestMapping(value="/getUsers", method=RequestMethod.GET)
-	public List<UserDto> getUsers(@RequestParam() String loginName, String fullName, String phoneNumber) {
+
+	@RequestMapping(value = "/getUsers", method = RequestMethod.GET)
+	public List<UserDto> getUsers(@RequestParam(value = "loginName", required = false) String loginName,
+			@RequestParam(value = "userFullName", required = false) String fullName,
+			@RequestParam(value = "phoneNumber", required = false) String phoneNumber) {
 		return userFacadeLocal.getUser(loginName, fullName, phoneNumber);
 	}
-	
-	@RequestMapping(value="/createUser", method=RequestMethod.POST)
-	public Long createUser(@RequestBody(required = true) UserDto userDto) {
+
+	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
+	public String createUser(@RequestBody(required = true) UserDto userDto) {
 		return userFacadeLocal.createUser(userDto);
 	}
 }
